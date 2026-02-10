@@ -13,6 +13,7 @@ import Events from './pages/Events';
 import Analytics from './pages/Analytics';
 import History from './pages/History';
 import Settings from './pages/Settings';
+import DashboardLayout from './components/DashboardLayout';
 
 function App() {
   return (
@@ -24,17 +25,18 @@ function App() {
 
         {/* Protected Routes (Logic will be simplified for this version) */}
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/club-dashboard" element={<ClubLeadDashboard />} />
-        <Route path="/create" element={<AiCreationSuite />} />
-        <Route path="/builder" element={<LowCodeBuilder />} />
         <Route path="/admin" element={<AdminPanel />} />
 
-        {/* Module Pages */}
-        <Route path="/team" element={<TeamHub />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/settings" element={<Settings />} />
+        {/* Club Lead Group with Shared Sidebar Layout */}
+        <Route element={<DashboardLayout />}>
+          <Route path="/club-dashboard" element={<ClubLeadDashboard />} />
+          <Route path="/team" element={<TeamHub />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/create" element={<AiCreationSuite />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

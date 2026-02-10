@@ -55,14 +55,11 @@ const AiCreationSuite = () => {
     };
 
     return (
-        <div className="workspace-wrapper">
+        <div style={{ padding: '2rem' }}>
             {/* Header */}
-            <header className="workspace-header">
+            <header className="workspace-header" style={{ borderRadius: '20px', marginBottom: '2rem' }}>
                 <div className="workspace-nav-container">
                     <div className="nav-left">
-                        <Link to="/dashboard" className="btn-back">
-                            <ChevronLeft size={20} />
-                        </Link>
                         <h1 className="workspace-title">Creation Suite</h1>
                     </div>
 
@@ -80,13 +77,11 @@ const AiCreationSuite = () => {
                         ))}
                     </div>
 
-                    <button className="btn-primary" style={{ fontSize: '0.75rem', padding: '0.5rem 1rem' }}>
-                        Draft Options
-                    </button>
+                    <div style={{ width: '100px' }} /> {/* Spacer */}
                 </div>
             </header>
 
-            <div className="dashboard-content" style={{ maxWidth: '1000px' }}>
+            <div className="dashboard-content" style={{ margin: '0 auto' }}>
                 <AnimatePresence mode="wait">
                     {currentStep === 0 && (
                         <motion.div

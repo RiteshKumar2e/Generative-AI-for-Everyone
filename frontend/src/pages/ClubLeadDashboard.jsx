@@ -60,262 +60,247 @@ const ClubLeadDashboard = () => {
     }
 
     return (
-        <div className="dashboard-wrapper">
-            {/* Sidebar */}
-            <aside className="dashboard-sidebar">
-                <div className="sidebar-logo">
-                    <div className="sidebar-logo-icon">
-                        <BrainIcon size={24} />
-                    </div>
-                    <span>Campus<span style={{ color: 'var(--primary-color)' }}>GenAI</span></span>
+        <div style={{ padding: '2rem' }}>
+            {/* Header */}
+            <header className="dashboard-header" style={{ marginBottom: '2rem' }}>
+                <div className="search-bar">
+                    <Search className="search-icon" size={18} />
+                    <input
+                        type="text"
+                        placeholder="Search members, events, or projects..."
+                    />
                 </div>
-
-                <nav className="sidebar-nav">
-                    <SidebarLink icon={<LayoutDashboard size={20} />} label="Overview" to="/club-dashboard" active />
-                    <SidebarLink icon={<Users size={20} />} label="Team Hub" to="/team" />
-                    <SidebarLink icon={<Calendar size={20} />} label="Events" to="/events" />
-                    <SidebarLink icon={<PlusCircle size={20} />} label="Creation Suite" to="/create" />
-                    <SidebarLink icon={<BarChart3 size={20} />} label="Analytics" to="/analytics" />
-                    <SidebarLink icon={<Clock size={20} />} label="History" to="/history" />
-                </nav>
-
-                <div className="sidebar-footer">
-                    <SidebarLink icon={<Settings size={20} />} label="Settings" to="/settings" />
-                    <button className="btn-logout" onClick={() => setShowLogoutModal(true)}>
-                        <LogOut size={20} />
-                        <span>Logout</span>
+                <div className="header-actions">
+                    <button className="notification-btn">
+                        <Bell size={20} />
+                        <span className="notification-badge">3</span>
                     </button>
-                </div>
-            </aside>
-
-            {/* Main Content */}
-            <main className="dashboard-main">
-                {/* Header */}
-                <header className="dashboard-header">
-                    <div className="search-bar">
-                        <Search className="search-icon" size={18} />
-                        <input
-                            type="text"
-                            placeholder="Search members, events, or projects..."
-                        />
+                    <div className="user-profile">
+                        <div className="user-info">
+                            <span className="user-name">{userName}</span>
+                            <span className="user-role">Club Lead</span>
+                        </div>
+                        <div className="user-avatar">
+                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}`} alt="profile" />
+                        </div>
                     </div>
+                </div>
+            </header>
 
-                    <div className="header-actions">
-                        <button className="notification-btn">
-                            <Bell size={20} />
-                            <span className="notification-badge">3</span>
+            {/* Banner Section */}
+            <section className="dashboard-banner club-lead-banner">
+                <div className="banner-content">
+                    <h1>Ready to Lead, {userName}? 🚀</h1>
+                    <p>Manage your team, track performance, and create campus impact with AI tools.</p>
+                    <div className="banner-actions">
+                        <Link to="/create" className="btn-create-banner" style={{ textDecoration: 'none' }}>
+                            <Zap size={20} />
+                            Launch Suite
+                        </Link>
+                        <button className="btn-secondary-banner">
+                            <Target size={20} />
+                            Set Monthly Goal
                         </button>
-                        <div className="credit-badge">
-                            <Zap size={16} fill="currentColor" />
-                            <span>1,240 Credits</span>
+                    </div>
+                </div>
+            </section>
+
+            {/* Quick Stats */}
+            <div className="stats-grid">
+                <div className="stat-card club-stat-card">
+                    <div className="stat-icon" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
+                        <Users size={24} />
+                    </div>
+                    <div className="stat-info">
+                        <h3>158</h3>
+                        <p>Total Members</p>
+                    </div>
+                    <div className="stat-trend positive">
+                        <TrendingUp size={16} />
+                        <span>12%</span>
+                    </div>
+                </div>
+                <div className="stat-card club-stat-card">
+                    <div className="stat-icon" style={{ background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b' }}>
+                        <Calendar size={24} />
+                    </div>
+                    <div className="stat-info">
+                        <h3>4</h3>
+                        <p>Active Events</p>
+                    </div>
+                </div>
+                <div className="stat-card club-stat-card">
+                    <div className="stat-icon" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }}>
+                        <Sparkles size={24} />
+                    </div>
+                    <div className="stat-info">
+                        <h3>24</h3>
+                        <p>AI Assets Created</p>
+                    </div>
+                </div>
+                <div className="stat-card club-stat-card">
+                    <div className="stat-icon" style={{ background: 'rgba(139, 92, 246, 0.1)', color: '#8b5cf6' }}>
+                        <Award size={24} />
+                    </div>
+                    <div className="stat-info">
+                        <h3>#2</h3>
+                        <p>Campus Ranking</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Main Content Grid */}
+            <div className="dashboard-grid">
+                {/* Left Column: Management Tabs */}
+                <div className="grid-left">
+                    <div className="section-tabs">
+                        <button
+                            className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('overview')}
+                        >
+                            Overview
+                        </button>
+                        <button
+                            className={`tab-btn ${activeTab === 'recent' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('recent')}
+                        >
+                            Recent Activity
+                        </button>
+                        <button
+                            className={`tab-btn ${activeTab === 'upcoming' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('upcoming')}
+                        >
+                            Upcoming
+                        </button>
+                    </div>
+
+                    <div className="tab-content">
+                        {activeTab === 'overview' && (
+                            <div className="team-activity-grid">
+                                <div className="section-title-row">
+                                    <h2 className="section-title">Latest Team Activity</h2>
+                                    <Link to="/history" className="view-all-link">View Audit Log</Link>
+                                </div>
+                                <div className="team-activity-card">
+                                    <div className="activity-avatar">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="user" />
+                                    </div>
+                                    <div className="activity-details">
+                                        <h4>Alex Rivera</h4>
+                                        <p>Created a new marketing campaign using Creation Suite 🚀</p>
+                                        <div className="activity-meta">
+                                            <span className="activity-type">Creation</span>
+                                            <span className="activity-time">2 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <ChevronRight size={20} className="activity-arrow" />
+                                </div>
+                                <div className="team-activity-card">
+                                    <div className="activity-avatar">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="user" />
+                                    </div>
+                                    <div className="activity-details">
+                                        <h4>Sarah Chen</h4>
+                                        <p>Updated the event details for "AI Campus Summit" 📅</p>
+                                        <div className="activity-meta">
+                                            <span className="activity-type">Event</span>
+                                            <span className="activity-time">5 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <ChevronRight size={20} className="activity-arrow" />
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'upcoming' && (
+                            <div className="events-grid">
+                                <div className="event-card">
+                                    <div className="event-header">
+                                        <span className="event-status status-confirmed">Confirmed</span>
+                                        <MoreVertical size={18} />
+                                    </div>
+                                    <h4>AI Workshop: GenAI Basics</h4>
+                                    <p className="event-date">March 15, 2024 • 2:00 PM</p>
+                                    <div className="event-footer">
+                                        <div className="event-attendees">
+                                            <Users size={16} />
+                                            <span>45 Registered</span>
+                                        </div>
+                                        <button className="btn-action-small">Manage</button>
+                                    </div>
+                                </div>
+                                <div className="event-card">
+                                    <div className="event-header">
+                                        <span className="event-status status-planning">Planning</span>
+                                        <MoreVertical size={18} />
+                                    </div>
+                                    <h4>Campus Hackathon 2024</h4>
+                                    <p className="event-date">April 02, 2024 • 9:00 AM</p>
+                                    <div className="event-footer">
+                                        <div className="event-attendees">
+                                            <Users size={16} />
+                                            <span>120 Interested</span>
+                                        </div>
+                                        <button className="btn-action-small">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Right Column: Mini Widgets */}
+                <div className="grid-right">
+                    <div className="team-members-widget">
+                        <div className="section-title-row">
+                            <h2 className="section-title">Team</h2>
+                            <Link to="/team" className="view-all-link">Manage</Link>
                         </div>
-                        <div className="user-profile">
-                            <div className="user-info">
-                                <p className="user-name">{userName}</p>
-                                <p className="user-role">Club Lead</p>
-                            </div>
-                            <div className="user-avatar">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}`} alt="avatar" />
-                            </div>
+                        <div className="members-list">
+                            {[
+                                { name: 'Alex Rivera', role: 'Lead Designer', status: 'online' },
+                                { name: 'Sarah Chen', role: 'Dev Lead', status: 'online' },
+                                { name: 'Marcus Jo', role: 'Events', status: 'offline' }
+                            ].map((member, i) => (
+                                <div key={i} className="member-item">
+                                    <div className="member-avatar-wrapper">
+                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${member.name}`} alt="avatar" />
+                                        <span className={`status-dot ${member.status}`}></span>
+                                    </div>
+                                    <div className="member-info">
+                                        <p className="member-name">{member.name}</p>
+                                        <p className="member-role">{member.role}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </header>
 
-                <div className="dashboard-content">
-                    {/* Welcome Banner */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="welcome-banner club-lead-banner"
-                    >
-                        <div className="welcome-banner-content">
-                            <h1>Welcome back, {userName}! 🎯</h1>
-                            <p>Your club has 8 active members and 3 upcoming events. Let's make this week amazing!</p>
-                            <div className="banner-actions">
-                                <Link to="/events" className="btn-create-banner">
-                                    <Calendar size={20} />
-                                    Create Event
-                                </Link>
-                                <Link to="/team" className="btn-secondary-banner">
-                                    <UserPlus size={20} />
-                                    Invite Members
-                                </Link>
-                            </div>
+                    <div className="tasks-widget">
+                        <div className="section-title-row">
+                            <h2 className="section-title">To-Do</h2>
+                            <span className="task-count">3</span>
                         </div>
-                    </motion.div>
-
-                    {/* Stats Grid - Club Lead Specific */}
-                    <div className="stats-row">
-                        {[
-                            { label: 'Team Members', value: '8', icon: <Users color="#3b82f6" />, trend: '+2 this month', color: '#3b82f6' },
-                            { label: 'Active Events', value: '3', icon: <Calendar color="#22c55e" />, trend: '2 upcoming', color: '#22c55e' },
-                            { label: 'Club Engagement', value: '94%', icon: <TrendingUp color="#eab308" />, trend: '+12% vs last week', color: '#eab308' },
-                            { label: 'Team Credits', value: '1.2K', icon: <Award color="#7c3aed" />, trend: 'Pool balance', color: '#7c3aed' }
-                        ].map((stat, i) => (
-                            <div key={i} className="dashboard-stat-card club-stat-card">
-                                <div className="stat-header">
-                                    <div className="stat-icon-wrapper" style={{ background: `${stat.color}15` }}>{stat.icon}</div>
-                                    <span className="stat-trend">{stat.trend}</span>
-                                </div>
-                                <h3>{stat.value}</h3>
-                                <p>{stat.label}</p>
+                        <div className="tasks-list">
+                            <div className="task-item">
+                                <CheckCircle2 size={18} className="task-checkbox" />
+                                <span>Approve event budget</span>
+                                <span className="priority-badge priority-high">High</span>
                             </div>
-                        ))}
-                    </div>
-
-                    <div className="dashboard-grid">
-                        {/* Team Activity & Events */}
-                        <div className="creations-section">
-                            <div className="section-tabs">
-                                <button
-                                    className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
-                                    onClick={() => setActiveTab('overview')}
-                                >
-                                    Team Activity
-                                </button>
-                                <button
-                                    className={`tab-btn ${activeTab === 'events' ? 'active' : ''}`}
-                                    onClick={() => setActiveTab('events')}
-                                >
-                                    Upcoming Events
-                                </button>
+                            <div className="task-item">
+                                <CheckCircle2 size={18} className="task-checkbox" />
+                                <span>Review AI assets</span>
+                                <span className="priority-badge priority-medium">Medium</span>
                             </div>
-
-                            {activeTab === 'overview' && (
-                                <div className="team-activity-grid">
-                                    {[
-                                        { member: "Sarah Chen", action: "Created AI Workshop Poster", type: "Image", time: "2h ago", avatar: "Sarah" },
-                                        { member: "Alex Rivera", action: "Updated Event Registration Form", type: "Code", time: "5h ago", avatar: "Alex" },
-                                        { member: "James Wilson", action: "Shared Club Presentation", type: "Document", time: "1d ago", avatar: "James" },
-                                        { member: "Taylor Swift", action: "Posted Event Announcement", type: "Video", time: "2d ago", avatar: "Taylor" }
-                                    ].map((item, i) => (
-                                        <div key={i} className="team-activity-card">
-                                            <div className="activity-avatar">
-                                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.avatar}`} alt={item.member} />
-                                            </div>
-                                            <div className="activity-details">
-                                                <h4>{item.member}</h4>
-                                                <p>{item.action}</p>
-                                                <div className="activity-meta">
-                                                    <span className="activity-type">{item.type}</span>
-                                                    <span className="activity-time">{item.time}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            {activeTab === 'events' && (
-                                <div className="events-grid">
-                                    {[
-                                        { title: "AI Workshop Series", date: "Feb 15, 2026", attendees: 24, status: "Confirmed" },
-                                        { title: "Tech Talk: GenAI", date: "Feb 20, 2026", attendees: 18, status: "Planning" },
-                                        { title: "Club Fest Booth", date: "Mar 1, 2026", attendees: 12, status: "Pending" }
-                                    ].map((event, i) => (
-                                        <div key={i} className="event-card">
-                                            <div className="event-header">
-                                                <Calendar size={20} color="#3b82f6" />
-                                                <span className={`event-status status-${event.status.toLowerCase()}`}>{event.status}</span>
-                                            </div>
-                                            <h4>{event.title}</h4>
-                                            <p className="event-date">{event.date}</p>
-                                            <div className="event-footer">
-                                                <div className="event-attendees">
-                                                    <Users size={16} />
-                                                    <span>{event.attendees} registered</span>
-                                                </div>
-                                                <ChevronRight size={18} />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Quick Actions & Team Overview */}
-                        <div className="side-column">
-                            <div className="section-title-row">
-                                <h2>Quick Actions</h2>
-                            </div>
-                            <div className="quick-tools-list">
-                                {[
-                                    { label: "Event Poster", icon: <ImageIcon size={18} />, color: "#3b82f6" },
-                                    { label: "Registration Form", icon: <FileText size={18} />, color: "#22c55e" },
-                                    { label: "Social Media Post", icon: <MessageSquare size={18} />, color: "#ec4899" },
-                                    { label: "Presentation Slides", icon: <Play size={18} />, color: "#a855f7" }
-                                ].map((tool, i) => (
-                                    <button key={i} className="tool-button">
-                                        <div className="tool-info">
-                                            <div className="tool-icon-box" style={{ color: tool.color }}>{tool.icon}</div>
-                                            <span>{tool.label}</span>
-                                        </div>
-                                        <ChevronRight size={18} />
-                                    </button>
-                                ))}
-                            </div>
-
-                            {/* Team Members */}
-                            <div className="team-members-widget">
-                                <div className="section-title-row">
-                                    <h3>Team Members</h3>
-                                    <Link to="/team" className="view-all-link">View All</Link>
-                                </div>
-                                <div className="members-list">
-                                    {[
-                                        { name: "Sarah Chen", role: "Designer", status: "online" },
-                                        { name: "Alex Rivera", role: "Developer", status: "online" },
-                                        { name: "James Wilson", role: "Content", status: "offline" },
-                                        { name: "Taylor Swift", role: "Marketing", status: "online" }
-                                    ].map((member, i) => (
-                                        <div key={i} className="member-item">
-                                            <div className="member-avatar-wrapper">
-                                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${member.name}`} alt={member.name} />
-                                                <span className={`status-dot ${member.status}`}></span>
-                                            </div>
-                                            <div className="member-info">
-                                                <p className="member-name">{member.name}</p>
-                                                <p className="member-role">{member.role}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Tasks/To-Do */}
-                            <div className="tasks-widget">
-                                <div className="section-title-row">
-                                    <h3>Pending Tasks</h3>
-                                    <span className="task-count">3</span>
-                                </div>
-                                <div className="tasks-list">
-                                    {[
-                                        { task: "Review event budget", priority: "high" },
-                                        { task: "Approve poster designs", priority: "medium" },
-                                        { task: "Send team meeting invite", priority: "low" }
-                                    ].map((item, i) => (
-                                        <div key={i} className="task-item">
-                                            <CheckCircle2 size={18} className="task-checkbox" />
-                                            <span>{item.task}</span>
-                                            <span className={`priority-badge priority-${item.priority}`}>{item.priority}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                            <div className="task-item">
+                                <CheckCircle2 size={18} className="task-checkbox" />
+                                <span>Send club newsletter</span>
+                                <span className="priority-badge priority-low">Low</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-
-            {/* Logout Confirmation Modal */}
-            <LogoutModal
-                isOpen={showLogoutModal}
-                onClose={() => setShowLogoutModal(false)}
-                onConfirm={() => {
-                    localStorage.clear();
-                    navigate('/login');
-                }}
-            />
+            </div>
         </div>
     );
 };
