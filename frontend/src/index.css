@@ -29,7 +29,7 @@
   --slate-700: #334155;
   --slate-900: #0f172a;
 
-  --primary-color: #0284c7;
+  --primary-color: #0ea5e9;
   --accent-color: #7c3aed;
   --border-color: #e2e8f0;
   --text-main: #0f172a;
@@ -67,6 +67,7 @@ h6 {
 .text-gradient {
   background: linear-gradient(to right, #38bdf8, #8b5cf6, #f472b6);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
