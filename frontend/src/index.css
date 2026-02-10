@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import './styles/Common.css';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --primary-50: #f0f9ff;
   --primary-100: #e0f2fe;
