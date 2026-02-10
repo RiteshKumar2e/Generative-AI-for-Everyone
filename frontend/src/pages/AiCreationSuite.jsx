@@ -67,6 +67,10 @@ const AiCreationSuite = () => {
             setOutput(response.data.content);
             setProvider(response.data.provider);
             setCurrentStep(2);
+
+            // Log to history
+            const { logActivity } = await import('../utils/historyLogger');
+            logActivity('Creation', `Generated AI ${type === 'code' ? 'Code' : 'Content'}: ${prompt.substring(0, 20)}...`);
         } catch (error) {
             console.error('Generation failed:', error);
             // Service itself handles fallback but if network fails:

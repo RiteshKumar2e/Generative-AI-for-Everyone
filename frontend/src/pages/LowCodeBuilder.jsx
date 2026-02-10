@@ -79,8 +79,10 @@ const LowCodeBuilder = () => {
         next();
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         setShowSaveSuccess(true);
+        const { logActivity } = await import('../utils/historyLogger');
+        logActivity('Utility', `Deployed custom AI Flow with ${pipeline.length} blocks`);
         setTimeout(() => setShowSaveSuccess(false), 3000);
     };
 
