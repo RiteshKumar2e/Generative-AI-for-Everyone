@@ -42,6 +42,11 @@ const Dashboard = () => {
         return null;
     }
 
+    if (role === 'club') {
+        navigate('/club-dashboard');
+        return null;
+    }
+
     return (
         <div className="dashboard-wrapper">
             {/* Sidebar */}

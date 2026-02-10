@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
+import ClubLeadDashboard from './pages/ClubLeadDashboard';
 import AiCreationSuite from './pages/AiCreationSuite';
 import LowCodeBuilder from './pages/LowCodeBuilder';
 import AdminPanel from './pages/AdminPanel';
@@ -18,6 +19,7 @@ function App() {
 
         {/* Protected Routes (Logic will be simplified for this version) */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/club-dashboard" element={<ClubLeadDashboard />} />
         <Route path="/create" element={<AiCreationSuite />} />
         <Route path="/builder" element={<LowCodeBuilder />} />
         <Route path="/admin" element={<AdminPanel />} />
