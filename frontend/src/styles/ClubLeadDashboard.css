@@ -1,48 +1,56 @@
 /* Club Lead Dashboard Specific Styles */
 
 .club-lead-banner {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.banner-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.btn-secondary-banner {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.btn-secondary-banner:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-.club-stat-card {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
     position: relative;
     overflow: hidden;
 }
 
-.club-stat-card::before {
+.club-lead-banner::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.banner-content h1 {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.btn-create-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+.stat-card-premium {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+.stat-progress-bar {
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    height: 4px;
+    background: var(--primary-color);
+    opacity: 0.15;
 }
 
 /* Section Tabs */
@@ -429,4 +437,108 @@
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Header Modern Layout */
+.dashboard-header-simple {
+    background: transparent;
+    padding: 0;
+    border: none;
+    margin-bottom: 2.5rem;
+    position: relative;
+    top: 0;
+    z-index: 10;
+}
+
+.search-bar-modern {
+    position: relative;
+    width: 300px;
+}
+
+.search-bar-modern input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: white;
+    outline: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.search-bar-modern input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+    transform: translateY(-1px);
+}
+
+.notification-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: white;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-muted);
+}
+
+.notification-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: #f5f3ff;
+}
+
+.notification-dot {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 0 0 2px white;
+}
+
+.user-profile-summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.user-profile-summary .info {
+    text-align: right;
+}
+
+.user-profile-summary .info .name {
+    margin: 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.user-profile-summary .info .role {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.user-profile-summary img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

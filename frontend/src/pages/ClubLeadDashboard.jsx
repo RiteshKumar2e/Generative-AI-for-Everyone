@@ -23,7 +23,8 @@ import {
     Bell,
     BarChart3,
     UserPlus,
-    CheckCircle2
+    CheckCircle2,
+    MoreVertical
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoutModal from '../components/LogoutModal';
@@ -60,45 +61,52 @@ const ClubLeadDashboard = () => {
     }
 
     return (
-        <div style={{ padding: '2rem' }}>
+        <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
             {/* Header */}
-            <header className="dashboard-header" style={{ marginBottom: '2rem' }}>
-                <div className="search-bar">
-                    <Search className="search-icon" size={18} />
-                    <input
-                        type="text"
-                        placeholder="Search members, events, or projects..."
-                    />
+            <header className="dashboard-header-simple">
+                <div>
+                    <h1 style={{ fontSize: '1.75rem', fontWeight: 800, fontFamily: 'Outfit', margin: 0 }}>Overview</h1>
+                    <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.9rem' }}>Welcome back to your workspace</p>
                 </div>
                 <div className="header-actions">
+                    <div className="search-bar-modern">
+                        <Search className="search-icon" size={18} />
+                        <input
+                            type="text"
+                            placeholder="Search everything..."
+                        />
+                    </div>
                     <button className="notification-btn">
                         <Bell size={20} />
-                        <span className="notification-badge">3</span>
+                        <span className="notification-dot">3</span>
                     </button>
-                    <div className="user-profile">
-                        <div className="user-info">
-                            <span className="user-name">{userName}</span>
-                            <span className="user-role">Club Lead</span>
+                    <div className="user-profile-summary">
+                        <div className="info">
+                            <p className="name">{userName}</p>
+                            <p className="role">Club Lead</p>
                         </div>
-                        <div className="user-avatar">
-                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}`} alt="profile" />
-                        </div>
+                        <img
+                            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}`}
+                            alt="profile"
+                        />
                     </div>
                 </div>
             </header>
 
             {/* Banner Section */}
-            <section className="dashboard-banner club-lead-banner">
+            <section className="welcome-banner club-lead-banner">
                 <div className="banner-content">
                     <h1>Ready to Lead, {userName}? 🚀</h1>
-                    <p>Manage your team, track performance, and create campus impact with AI tools.</p>
-                    <div className="banner-actions">
+                    <p>
+                        Scale your impact with our AI-powered suite. Manage team growth, track event success, and generate professional assets in seconds.
+                    </p>
+                    <div className="banner-actions" style={{ display: 'flex', gap: '1.25rem' }}>
                         <Link to="/create" className="btn-create-banner" style={{ textDecoration: 'none' }}>
-                            <Zap size={20} />
-                            Launch Suite
+                            <Zap size={22} fill="currentColor" />
+                            Launch AI Suite
                         </Link>
                         <button className="btn-secondary-banner">
-                            <Target size={20} />
+                            <Target size={22} />
                             Set Monthly Goal
                         </button>
                     </div>
@@ -106,46 +114,61 @@ const ClubLeadDashboard = () => {
             </section>
 
             {/* Quick Stats */}
-            <div className="stats-grid">
-                <div className="stat-card club-stat-card">
-                    <div className="stat-icon" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
-                        <Users size={24} />
+            <div className="stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+                <div className="stat-card-premium">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                        <div style={{ padding: '0.75rem', borderRadius: '16px', background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
+                            <Users size={26} />
+                        </div>
+                        <div className="stat-trend positive" style={{ fontSize: '0.8rem', fontWeight: 800, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                            <TrendingUp size={16} />
+                            <span>12%</span>
+                        </div>
                     </div>
-                    <div className="stat-info">
-                        <h3>158</h3>
-                        <p>Total Members</p>
+                    <div>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>158</h3>
+                        <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Total Members</p>
                     </div>
-                    <div className="stat-trend positive">
-                        <TrendingUp size={16} />
-                        <span>12%</span>
-                    </div>
+                    <div className="stat-progress-bar" style={{ background: '#6366f1' }} />
                 </div>
-                <div className="stat-card club-stat-card">
-                    <div className="stat-icon" style={{ background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b' }}>
-                        <Calendar size={24} />
+
+                <div className="stat-card-premium">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                        <div style={{ padding: '0.75rem', borderRadius: '16px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b' }}>
+                            <Calendar size={26} />
+                        </div>
                     </div>
-                    <div className="stat-info">
-                        <h3>4</h3>
-                        <p>Active Events</p>
+                    <div>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>4</h3>
+                        <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Active Events</p>
                     </div>
+                    <div className="stat-progress-bar" style={{ background: '#f59e0b' }} />
                 </div>
-                <div className="stat-card club-stat-card">
-                    <div className="stat-icon" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }}>
-                        <Sparkles size={24} />
+
+                <div className="stat-card-premium">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                        <div style={{ padding: '0.75rem', borderRadius: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }}>
+                            <Sparkles size={26} />
+                        </div>
                     </div>
-                    <div className="stat-info">
-                        <h3>24</h3>
-                        <p>AI Assets Created</p>
+                    <div>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>24</h3>
+                        <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>AI Assets Created</p>
                     </div>
+                    <div className="stat-progress-bar" style={{ background: '#10b981' }} />
                 </div>
-                <div className="stat-card club-stat-card">
-                    <div className="stat-icon" style={{ background: 'rgba(139, 92, 246, 0.1)', color: '#8b5cf6' }}>
-                        <Award size={24} />
+
+                <div className="stat-card-premium">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                        <div style={{ padding: '0.75rem', borderRadius: '16px', background: 'rgba(139, 92, 246, 0.1)', color: '#8b5cf6' }}>
+                            <Award size={26} />
+                        </div>
                     </div>
-                    <div className="stat-info">
-                        <h3>#2</h3>
-                        <p>Campus Ranking</p>
+                    <div>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>#2</h3>
+                        <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Campus Ranking</p>
                     </div>
+                    <div className="stat-progress-bar" style={{ background: '#8b5cf6' }} />
                 </div>
             </div>
 
