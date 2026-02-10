@@ -22,6 +22,20 @@ const LandingPage = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const userRole = localStorage.getItem('userRole');
+
+    const getDashboardLink = () => {
+        if (userRole === 'admin') return '/admin';
+        if (userRole === 'club') return '/club-dashboard';
+        return '/dashboard';
+    };
+
+    const getDashboardText = () => {
+        if (userRole === 'admin') return 'Oversight Panel';
+        if (userRole === 'club') return 'Club Dashboard';
+        return 'Go to Dashboard';
+    };
+
     return (
         <div className="landing-wrapper">
             <ThreeBackground />
@@ -42,7 +56,7 @@ const LandingPage = () => {
             {/* Navbar */}
             <nav className={`main-nav ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="nav-container">
-                    <Link to="/" className="logo-box">
+                    <Link to={userRole ? getDashboardLink() : "/"} className="logo-box">
                         <div className="icon-logo">
                             <Brain size={26} fill="white" />
                         </div>
@@ -60,8 +74,14 @@ const LandingPage = () => {
                     </div>
 
                     <div className="nav-actions">
-                        <Link to="/login" className="btn-signin">Sign In</Link>
-                        <Link to="/register" className="btn-cta">Start Building</Link>
+                        {userRole ? (
+                            <Link to={getDashboardLink()} className="btn-cta">{getDashboardText()}</Link>
+                        ) : (
+                            <>
+                                <Link to="/login" className="btn-signin">Sign In</Link>
+                                <Link to="/register" className="btn-cta">Start Building</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </nav>

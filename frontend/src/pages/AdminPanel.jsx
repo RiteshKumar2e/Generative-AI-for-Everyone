@@ -64,7 +64,7 @@ const AdminPanel = () => {
             <header className="workspace-header">
                 <div className="workspace-nav-container">
                     <div className="nav-left">
-                        <Link to="/" className="logo-box" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        <Link to="/admin" className="logo-box" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                             <div className="icon-logo" style={{
                                 background: 'linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%)',
                                 padding: '8px',
