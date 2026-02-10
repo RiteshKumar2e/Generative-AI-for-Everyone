@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin } from 'lucide-react';
+import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin, ChevronUp } from 'lucide-react';
 import ThreeBackground from '../components/ThreeBackground';
 import { Link } from 'react-router-dom';
 import '../styles/LandingPage.css';
@@ -21,6 +21,13 @@ const LandingPage = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
 
     const userRole = localStorage.getItem('userRole');
 
@@ -442,6 +449,23 @@ const LandingPage = () => {
                     </div>
                 </div>
             </footer>
+
+            {/* Scroll to Top Button */}
+            <motion.button
+                className={`scroll-top-btn ${isScrolled ? 'visible' : ''}`}
+                onClick={scrollToTop}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{
+                    opacity: isScrolled ? 1 : 0,
+                    scale: isScrolled ? 1 : 0.5,
+                    y: isScrolled ? 0 : 20
+                }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.9 }}
+                title="Scroll to top"
+            >
+                <ChevronUp size={24} />
+            </motion.button>
         </div>
     );
 };

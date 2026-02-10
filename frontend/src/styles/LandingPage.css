@@ -571,3 +571,39 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Scroll to Top Button */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1500;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-top-btn.visible {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.scroll-top-btn:hover {
+    box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4);
+    transform: scale(1.05);
+}
+
+.scroll-top-btn svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
