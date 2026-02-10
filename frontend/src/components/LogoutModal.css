@@ -14,7 +14,8 @@
 .logout-modal {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 40%;
+    /* Exactly centered on the screen */
     transform: translate(-50%, -50%);
     background: white;
     border-radius: 20px;
@@ -143,6 +144,8 @@
 @media (max-width: 480px) {
     .logout-modal {
         padding: 1.5rem;
+        left: 50%;
+        /* Reset sidebar offset on mobile */
     }
 
     .logout-modal h2 {
