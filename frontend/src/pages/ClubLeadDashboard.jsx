@@ -64,9 +64,9 @@ const ClubLeadDashboard = () => {
         <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
             {/* Header */}
             <header className="dashboard-header-simple">
-                <div>
-                    <h1 style={{ fontSize: '1.75rem', fontWeight: 800, fontFamily: 'Outfit', margin: 0 }}>Overview</h1>
-                    <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.9rem' }}>Welcome back to your workspace</p>
+                <div className="header-title-group">
+                    <h1 className="header-title">Overview</h1>
+                    <p className="header-subtitle">Welcome back to your workspace</p>
                 </div>
                 <div className="header-actions">
                     <div className="search-bar-modern">

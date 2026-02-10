@@ -441,8 +441,11 @@
 
 /* Header Modern Layout */
 .dashboard-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: transparent;
-    padding: 0;
+    padding: 0.5rem 0;
     border: none;
     margin-bottom: 2.5rem;
     position: relative;
@@ -450,9 +453,40 @@
     z-index: 10;
 }
 
+.header-title-group .header-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.header-title-group .header-subtitle {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .search-bar-modern {
     position: relative;
     width: 300px;
+}
+
+.search-bar-modern .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
 }
 
 .search-bar-modern input {
