@@ -48,6 +48,10 @@ const LowCodeBuilder = () => {
     const [testNode, setTestNode] = useState(null);
     const [showSaveSuccess, setShowSaveSuccess] = useState(false);
 
+    // Editor State
+    const [editingNode, setEditingNode] = useState(null);
+    const [editData, setEditData] = useState(null);
+
     const addNode = (nodeData) => {
         const newNode = {
             ...nodeData,
@@ -56,8 +60,20 @@ const LowCodeBuilder = () => {
         setPipeline([...pipeline, newNode]);
     };
 
-    const removeNode = (id) => {
+    const removeNode = (id, e) => {
+        e.stopPropagation();
         setPipeline(pipeline.filter(n => n.id !== id));
+    };
+
+    const startEdit = (node) => {
+        setEditingNode(node.id);
+        setEditData({ ...node });
+    };
+
+    const saveEdit = () => {
+        setPipeline(prev => prev.map(n => n.id === editingNode ? editData : n));
+        setEditingNode(null);
+        setEditData(null);
     };
 
     const runTest = () => {
@@ -154,13 +170,15 @@ const LowCodeBuilder = () => {
                             <React.Fragment key={step.id}>
                                 <motion.div
                                     layout
+                                    onClick={() => startEdit(step)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{
                                         opacity: 1,
                                         y: 0,
                                         scale: testNode === step.id ? 1.05 : 1,
                                         boxShadow: testNode === step.id ? '0 20px 40px rgba(99, 102, 241, 0.2)' : '0 4px 12px rgba(0,0,0,0.05)',
-                                        borderColor: testNode === step.id ? 'var(--primary-color)' : 'var(--border-color)'
+                                        borderColor: editingNode === step.id ? 'var(--primary-color)' : testNode === step.id ? 'var(--primary-color)' : 'var(--border-color)',
+                                        borderWidth: editingNode === step.id ? '2px' : '2px'
                                     }}
                                     exit={{ opacity: 0, scale: 0.8 }}
                                     className={`pipeline-node-functional`}
@@ -172,7 +190,8 @@ const LowCodeBuilder = () => {
                                         background: 'white',
                                         border: '2px solid',
                                         borderColor: 'var(--border-color)',
-                                        position: 'relative'
+                                        position: 'relative',
+                                        cursor: 'pointer'
                                     }}
                                 >
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -185,9 +204,14 @@ const LowCodeBuilder = () => {
                                                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>{step.type}</span>
                                             </div>
                                         </div>
-                                        <button onClick={() => removeNode(step.id)} style={{ padding: '0.4rem', borderRadius: '8px', border: 'none', background: 'transparent', cursor: 'pointer', color: '#94a3b8' }}>
-                                            <Trash2 size={16} />
-                                        </button>
+                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                            <button onClick={(e) => { e.stopPropagation(); startEdit(step); }} style={{ padding: '0.4rem', borderRadius: '8px', border: 'none', background: 'transparent', cursor: 'pointer', color: '#94a3b8' }}>
+                                                <Settings size={16} />
+                                            </button>
+                                            <button onClick={(e) => removeNode(step.id, e)} style={{ padding: '0.4rem', borderRadius: '8px', border: 'none', background: 'transparent', cursor: 'pointer', color: '#94a3b8' }}>
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </div>
                                     </div>
                                     <div style={{ marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                                         {step.desc}
@@ -222,6 +246,52 @@ const LowCodeBuilder = () => {
                     )}
                 </div>
 
+                {/* Configuration Sidebar */}
+                <AnimatePresence>
+                    {editingNode && (
+                        <motion.div
+                            initial={{ x: 400 }}
+                            animate={{ x: 0 }}
+                            exit={{ x: 400 }}
+                            style={{ position: 'absolute', right: 0, top: 0, width: '380px', height: '100%', background: 'white', borderLeft: '1px solid var(--border-color)', boxShadow: '-20px 0 40px rgba(0,0,0,0.05)', zIndex: 100, display: 'flex', flexDirection: 'column' }}
+                        >
+                            <div style={{ padding: '2rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <h3 style={{ margin: 0, fontWeight: 800 }}>Configure Block</h3>
+                                <button onClick={() => setEditingNode(null)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <div style={{ padding: '2rem', flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                <div>
+                                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>Block Label</label>
+                                    <input
+                                        type="text"
+                                        value={editData.label}
+                                        onChange={(e) => setEditData({ ...editData, label: e.target.value })}
+                                        style={{ width: '100%', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontWeight: 600, outline: 'none' }}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>Description</label>
+                                    <textarea
+                                        value={editData.desc}
+                                        onChange={(e) => setEditData({ ...editData, desc: e.target.value })}
+                                        rows="3"
+                                        style={{ width: '100%', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontWeight: 600, outline: 'none', resize: 'none' }}
+                                    />
+                                </div>
+                            </div>
+
+                            <div style={{ padding: '2rem', borderTop: '1px solid var(--border-color)', display: 'flex', gap: '1rem' }}>
+                                <button onClick={() => setEditingNode(null)} style={{ flex: 1, padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'white', fontWeight: 700, cursor: 'pointer' }}>Cancel</button>
+                                <button onClick={saveEdit} style={{ flex: 1, padding: '1rem', borderRadius: '12px', border: 'none', background: 'var(--primary-color)', color: 'white', fontWeight: 700, cursor: 'pointer' }}>Save Changes</button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 {/* Floating Feedback */}
                 <AnimatePresence>
                     {showSaveSuccess && (
@@ -229,7 +299,7 @@ const LowCodeBuilder = () => {
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 50 }}
-                            style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', background: 'white', padding: '1rem 2rem', borderRadius: '16px', border: '1px solid #bbf7d0', color: '#059669', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+                            style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', background: 'white', padding: '1rem 2rem', borderRadius: '16px', border: '1px solid #bbf7d0', color: '#059669', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', zIndex: 101 }}
                         >
                             <CheckCircle2 size={20} />
                             Utility Deployment Successful!
