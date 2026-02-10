@@ -24,15 +24,16 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
 
         {/* Protected Routes (Logic will be simplified for this version) */}
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminPanel />} />
 
-        {/* Club Lead Group with Shared Sidebar Layout */}
+        {/* Unified Dashboard Group for Students and Club Leads */}
         <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/club-dashboard" element={<ClubLeadDashboard />} />
           <Route path="/team" element={<TeamHub />} />
           <Route path="/events" element={<Events />} />
           <Route path="/create" element={<AiCreationSuite />} />
+          <Route path="/builder" element={<LowCodeBuilder />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/history" element={<History />} />
           <Route path="/settings" element={<Settings />} />

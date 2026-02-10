@@ -39,13 +39,10 @@ const LowCodeBuilder = () => {
     ]);
 
     return (
-        <div className="builder-wrapper">
-            {/* Toolbox */}
-            <aside className="toolbox-aside">
+        <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'flex', gap: '2rem', height: 'calc(100vh - 4rem)' }}>
+            {/* Toolbox - now inside the main content area */}
+            <aside className="toolbox-aside" style={{ width: '300px', flexShrink: 0, height: '100%', position: 'relative', top: 0, left: 0, boxShadow: 'none', border: '1px solid var(--border-color)', borderRadius: '24px' }}>
                 <div className="toolbox-header">
-                    <Link to="/dashboard" className="btn-back">
-                        <ChevronLeft size={20} />
-                    </Link>
                     <h2 className="workspace-title">Toolbox</h2>
                 </div>
 
@@ -72,9 +69,9 @@ const LowCodeBuilder = () => {
             </aside>
 
             {/* Canvas */}
-            <main className="builder-canvas">
+            <main className="builder-canvas" style={{ flex: 1, borderRadius: '24px', position: 'relative' }}>
                 {/* Toolbar */}
-                <div className="canvas-toolbar">
+                <div className="canvas-toolbar" style={{ borderRadius: '24px 24px 0 0' }}>
                     <div className="toolbar-title">
                         <h1>Campaign Script Workflow</h1>
                         <span className="badge-draft">Draft</span>
@@ -94,7 +91,7 @@ const LowCodeBuilder = () => {
                 </div>
 
                 {/* Builder Area */}
-                <div className="canvas-scroll">
+                <div className="canvas-scroll" style={{ background: '#f8fafc' }}>
                     {pipeline.map((step, i) => (
                         <React.Fragment key={step.id}>
                             <motion.div

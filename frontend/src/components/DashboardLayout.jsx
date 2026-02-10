@@ -31,11 +31,17 @@ const DashboardLayout = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const role = localStorage.getItem('userRole') || 'student';
 
-    // Role protection - though routes should be protected too
+    // Simplified protection - just ensure logged in
     React.useEffect(() => {
-        if (role !== 'club' && role !== 'admin') {
-            // If student tries to access club layout, redirect them
-            if (location.pathname.startsWith('/club-dashboard') || ['/team', '/events', '/analytics', '/history', '/settings'].includes(location.pathname)) {
+        if (!role) {
+            navigate('/login');
+            return;
+        }
+
+        // Only block cross-role management pages
+        if (role === 'student') {
+            const clubOnlyPaths = ['/club-dashboard', '/team', '/events', '/analytics'];
+            if (clubOnlyPaths.some(path => location.pathname.startsWith(path))) {
                 navigate('/dashboard');
             }
         }
@@ -53,36 +59,63 @@ const DashboardLayout = () => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <SidebarLink
-                        icon={<LayoutDashboard size={20} />}
-                        label="Overview"
-                        to="/club-dashboard"
-                        active={location.pathname === '/club-dashboard'}
-                    />
-                    <SidebarLink
-                        icon={<Users size={20} />}
-                        label="Team Hub"
-                        to="/team"
-                        active={location.pathname === '/team'}
-                    />
-                    <SidebarLink
-                        icon={<Calendar size={20} />}
-                        label="Events"
-                        to="/events"
-                        active={location.pathname === '/events'}
-                    />
+                    {/* Common / Role Specific Overview */}
+                    {role === 'club' ? (
+                        <>
+                            <SidebarLink
+                                icon={<LayoutDashboard size={20} />}
+                                label="Overview"
+                                to="/club-dashboard"
+                                active={location.pathname === '/club-dashboard'}
+                            />
+                            <SidebarLink
+                                icon={<Users size={20} />}
+                                label="Team Hub"
+                                to="/team"
+                                active={location.pathname === '/team'}
+                            />
+                            <SidebarLink
+                                icon={<Calendar size={20} />}
+                                label="Events"
+                                to="/events"
+                                active={location.pathname === '/events'}
+                            />
+                        </>
+                    ) : (
+                        <SidebarLink
+                            icon={<LayoutDashboard size={20} />}
+                            label="Overview"
+                            to="/dashboard"
+                            active={location.pathname === '/dashboard'}
+                        />
+                    )}
+
+                    {/* Creation Suite is shared */}
                     <SidebarLink
                         icon={<PlusCircle size={20} />}
                         label="Creation Suite"
                         to="/create"
                         active={location.pathname === '/create'}
                     />
-                    <SidebarLink
-                        icon={<BarChart3 size={20} />}
-                        label="Analytics"
-                        to="/analytics"
-                        active={location.pathname === '/analytics'}
-                    />
+
+                    {/* Role Specific Tools */}
+                    {role === 'student' ? (
+                        <SidebarLink
+                            icon={<Zap size={20} />}
+                            label="AI Utilities"
+                            to="/builder"
+                            active={location.pathname === '/builder'}
+                        />
+                    ) : (
+                        <SidebarLink
+                            icon={<BarChart3 size={20} />}
+                            label="Analytics"
+                            to="/analytics"
+                            active={location.pathname === '/analytics'}
+                        />
+                    )}
+
+                    {/* Shared Audit/History */}
                     <SidebarLink
                         icon={<Clock size={20} />}
                         label="History"
