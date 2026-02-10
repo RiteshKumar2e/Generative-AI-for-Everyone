@@ -128,22 +128,37 @@ const LandingPage = () => {
 
                 {/* Buttons removed from here as they are now in the navbar */}
 
-                <div className="creative-icons" style={{ marginTop: '4rem' }}>
-                    {[FileText, Image, Play, Brain, Code].map((Icon, idx) => (
+                <div className="capabilities-dock">
+                    {[
+                        { Icon: FileText, label: "Text Gen" },
+                        { Icon: Image, label: "Visuals" },
+                        { Icon: Play, label: "Media" },
+                        { Icon: Brain, label: "Neural" },
+                        { Icon: Code, label: "Logic" }
+                    ].map((item, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{
-                                delay: 0.4 + (idx * 0.1),
-                                type: "spring",
-                                stiffness: 200,
-                                damping: 15
-                            }}
+                            className="capability-item"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="creative-box"
+                            transition={{ delay: 0.4 + (idx * 0.1), duration: 0.8 }}
                         >
-                            <Icon size={24} />
+                            <motion.div
+                                className="capability-box"
+                                animate={{
+                                    y: [0, -10, 0],
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: idx * 0.5
+                                }}
+                            >
+                                <item.Icon size={26} />
+                                <span className="capability-label">{item.label}</span>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
