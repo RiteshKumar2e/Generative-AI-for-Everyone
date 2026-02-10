@@ -11,7 +11,22 @@ const LoginPage = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        navigate('/dashboard');
+
+        let role = 'student';
+        if (email.includes('admin')) {
+            role = 'admin';
+        } else if (email.includes('lead')) {
+            role = 'club';
+        }
+
+        localStorage.setItem('userRole', role);
+        localStorage.setItem('userName', role === 'admin' ? 'Admin User' : role === 'club' ? 'Club Lead' : 'Student User');
+
+        if (role === 'admin') {
+            navigate('/admin');
+        } else {
+            navigate('/dashboard');
+        }
     };
 
     return (

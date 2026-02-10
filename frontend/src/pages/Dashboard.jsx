@@ -17,7 +17,7 @@ import {
     FileText,
     Code
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 const SidebarLink = ({ icon, label, to, active }) => (
@@ -30,7 +30,18 @@ const SidebarLink = ({ icon, label, to, active }) => (
     </Link>
 );
 
+
+
 const Dashboard = () => {
+    const navigate = useNavigate();
+    const role = localStorage.getItem('userRole') || 'student';
+    const userName = localStorage.getItem('userName') || 'User';
+
+    if (role === 'admin') {
+        navigate('/admin');
+        return null;
+    }
+
     return (
         <div className="dashboard-wrapper">
             {/* Sidebar */}
@@ -46,13 +57,13 @@ const Dashboard = () => {
                     <SidebarLink icon={<LayoutDashboard size={20} />} label="Overview" to="/dashboard" active />
                     <SidebarLink icon={<PlusCircle size={20} />} label="Creation Suite" to="/create" />
                     <SidebarLink icon={<Code size={20} />} label="AI Utilities" to="/builder" />
-                    <SidebarLink icon={<Users size={20} />} label="Team Hub" to="/team" />
+                    {role === 'club' && <SidebarLink icon={<Users size={20} />} label="Team Hub" to="/team" />}
                     <SidebarLink icon={<Clock size={20} />} label="History" to="/history" />
                 </nav>
 
                 <div className="sidebar-footer">
                     <SidebarLink icon={<Settings size={20} />} label="Settings" to="/settings" />
-                    <button className="btn-logout">
+                    <button className="btn-logout" onClick={() => { localStorage.clear(); navigate('/login'); }}>
                         <LogOut size={20} />
                         <span>Logout</span>
                     </button>
@@ -78,11 +89,11 @@ const Dashboard = () => {
                         </div>
                         <div className="user-profile">
                             <div className="user-info">
-                                <p className="user-name">Alex Rivera</p>
-                                <p className="user-role">Science Club Lead</p>
+                                <p className="user-name">{userName}</p>
+                                <p className="user-role">{role === 'club' ? 'Club Lead' : 'Student'}</p>
                             </div>
                             <div className="user-avatar">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Alex`} alt="avatar" />
+                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}`} alt="avatar" />
                             </div>
                         </div>
                     </div>

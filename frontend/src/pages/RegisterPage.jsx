@@ -10,7 +10,15 @@ const RegisterPage = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        navigate('/dashboard');
+        // Simulate registration and save role
+        localStorage.setItem('userRole', role);
+        localStorage.setItem('userName', 'New User'); // Mock name
+        
+        if (role === 'admin') {
+            navigate('/admin');
+        } else {
+            navigate('/dashboard');
+        }
     };
 
     return (

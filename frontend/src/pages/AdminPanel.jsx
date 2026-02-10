@@ -23,7 +23,7 @@ const AdminPanel = () => {
             <header className="workspace-header">
                 <div className="workspace-nav-container">
                     <div className="nav-left">
-                        <Link to="/dashboard" className="btn-back">
+                        <Link to="/" className="btn-back">
                             <ChevronLeft size={20} />
                         </Link>
                         <h1 className="workspace-title">Institutional Admin</h1>
@@ -36,6 +36,23 @@ const AdminPanel = () => {
                         <div className="user-avatar" style={{ width: '32px', height: '32px' }}>
                             <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Admin`} alt="admin" />
                         </div>
+                         <button 
+                            onClick={() => {
+                                localStorage.clear();
+                                window.location.href = '/login';
+                            }}
+                            className="btn-back" 
+                            style={{ 
+                                border: '1px solid var(--border-color)', 
+                                background: 'white',
+                                marginLeft: '0.5rem',
+                                padding: '0.5rem',
+                                cursor: 'pointer'
+                             }}
+                             title="Logout"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        </button>
                     </div>
                 </div>
             </header>
@@ -125,8 +142,8 @@ const AdminPanel = () => {
                                         <td style={{ fontWeight: 700, fontFamily: 'Outfit' }}>{user.credits}</td>
                                         <td>
                                             <span className={`status-pills ${user.status === 'Active' ? 'status-active' :
-                                                    user.status === 'Super User' ? 'status-admin' :
-                                                        'status-restricted'
+                                                user.status === 'Super User' ? 'status-admin' :
+                                                    'status-restricted'
                                                 }`}>
                                                 {user.status}
                                             </span>
