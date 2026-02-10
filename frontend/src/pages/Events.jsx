@@ -5,11 +5,7 @@ import '../styles/Dashboard.css';
 import '../styles/ClubLeadDashboard.css';
 
 const EventManagement = () => {
-    const events = [
-        { id: 1, title: 'AI Workshop 2024', date: 'March 15, 2024', location: 'Hall A', attendees: 120, status: 'Confirmed', color: '#3b82f6' },
-        { id: 2, title: 'Hackathon Prep', date: 'March 20, 2024', location: 'Lab 3', attendees: 45, status: 'In Planning', color: '#f59e0b' },
-        { id: 3, title: 'Monthly Meetup', date: 'April 02, 2024', location: 'Seminar Hall', attendees: 80, status: 'Proposed', color: '#10b981' },
-    ];
+    const events = [];
 
     return (
         <div style={{ padding: '2rem' }}>
@@ -25,7 +21,7 @@ const EventManagement = () => {
             </div>
 
             <div className="events-list" style={{ display: 'grid', gap: '1.5rem' }}>
-                {events.map((event) => (
+                {events.length > 0 ? events.map((event) => (
                     <motion.div
                         key={event.id}
                         whileHover={{ y: -5 }}
@@ -95,7 +91,19 @@ const EventManagement = () => {
                             <ChevronRight size={20} />
                         </button>
                     </motion.div>
-                ))}
+                )) : (
+                    <div style={{ textAlign: 'center', padding: '5rem 0', background: 'white', borderRadius: '24px', border: '1px dashed var(--border-color)' }}>
+                        <div style={{ width: '80px', height: '80px', background: 'var(--slate-50)', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: 'var(--slate-400)' }}>
+                            <Calendar size={40} />
+                        </div>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>No events scheduled</h3>
+                        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>Ready to host something amazing? Start planning your first event.</p>
+                        <button className="btn-create-banner" style={{ border: 'none', cursor: 'pointer' }}>
+                            <Plus size={18} />
+                            Schedule New Event
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
