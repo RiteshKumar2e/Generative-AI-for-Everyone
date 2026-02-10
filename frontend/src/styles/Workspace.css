@@ -1,0 +1,315 @@
+/* Workspace.css - For Creation Suite and Low-Code Builder */
+.workspace-wrapper {
+    min-height: 100vh;
+    background-color: var(--slate-50);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 5rem;
+}
+
+.workspace-header {
+    border-bottom: 1px solid var(--border-color);
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.workspace-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-back {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.btn-back:hover {
+    background: var(--slate-100);
+    color: var(--text-main);
+}
+
+.workspace-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+}
+
+.steps-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.step-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--slate-100);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.step-item.active .step-number {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+}
+
+.step-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.step-item.active .step-label {
+    color: var(--text-main);
+}
+
+.step-line {
+    width: 32px;
+    height: 1px;
+    background: var(--border-color);
+}
+
+/* Tool Buttons */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0;
+}
+
+.tool-select-btn {
+    padding: 2.5rem;
+    border-radius: 2rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tool-select-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+.tool-select-btn.active {
+    background: #f0f9ff;
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.1);
+}
+
+.tool-select-btn span {
+    font-weight: 800;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.tool-select-btn.active span {
+    color: var(--primary-color);
+}
+
+/* Prompt Area */
+.prompt-container {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.prompt-textarea {
+    width: 100%;
+    min-height: 250px;
+    padding: 2.5rem;
+    border-radius: 2.5rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6;
+    outline: none;
+    resize: none;
+    transition: all 0.2s;
+}
+
+.prompt-textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 5px rgba(2, 132, 199, 0.05);
+}
+
+.btn-generate {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 1.25rem 2.5rem;
+    background: var(--text-main);
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-generate:hover:not(:disabled) {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-generate:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Result Area */
+.result-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.result-card {
+    background: white;
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.result-header {
+    padding: 1.25rem 2.5rem;
+    background: var(--slate-50);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-body {
+    padding: 2.5rem;
+}
+
+.result-textarea {
+    width: 100%;
+    min-height: 450px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-main);
+    font-weight: 500;
+    resize: none;
+}
+
+.actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-primary {
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: var(--primary-700);
+}
+
+.meta-widget {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.meta-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.badge-green {
+    background: #f0fdf4;
+    color: #16a34a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border: 1px solid #bbf7d0;
+}
+
+@media (max-width: 1024px) {
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+}
