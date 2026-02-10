@@ -9,7 +9,8 @@ import {
     Clock,
     Settings,
     LogOut,
-    Zap
+    Zap,
+    User
 } from 'lucide-react';
 import LogoutModal from './LogoutModal';
 import '../styles/Dashboard.css';
@@ -125,6 +126,12 @@ const DashboardLayout = () => {
                 </nav>
 
                 <div className="sidebar-footer">
+                    <SidebarLink
+                        icon={<User size={20} />}
+                        label="My Profile"
+                        to="/settings"
+                        active={location.pathname === '/settings'}
+                    />
                     <SidebarLink
                         icon={<Settings size={20} />}
                         label="Settings"
