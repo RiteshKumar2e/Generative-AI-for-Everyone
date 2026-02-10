@@ -138,9 +138,21 @@ const Dashboard = () => {
                             <h2 style={{ fontFamily: 'Outfit', fontWeight: 800 }}>Quick Tools</h2>
                         </div>
                         <div className="quick-tools-list" style={{ display: 'grid', gap: '1rem' }}>
-                            <p style={{ color: 'var(--text-muted)', padding: '1rem', textAlign: 'center', background: 'var(--slate-50)', borderRadius: '16px' }}>
-                                No tools pinned to dashboard
-                            </p>
+                            {[
+                                { label: "Post Generator", icon: <FileText size={20} />, color: "#3b82f6", link: "/create" },
+                                { label: "Code Utility", icon: <Code size={20} />, color: "#a855f7", link: "/create" },
+                                { label: "AI Flow Builder", icon: <Zap size={20} />, color: "#22c55e", link: "/builder" }
+                            ].map((tool, i) => (
+                                <Link key={i} to={tool.link} style={{ textDecoration: 'none' }}>
+                                    <button className="tool-button" style={{ width: '100%', background: 'white', border: '1px solid var(--border-color)', padding: '1.25rem', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', transition: 'all 0.2s' }}>
+                                        <div className="tool-info" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                            <div className="tool-icon-box" style={{ color: tool.color, padding: '0.5rem', background: `${tool.color}10`, borderRadius: '12px' }}>{tool.icon}</div>
+                                            <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)' }}>{tool.label}</span>
+                                        </div>
+                                        <ChevronRight size={18} color="var(--text-muted)" />
+                                    </button>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </div>

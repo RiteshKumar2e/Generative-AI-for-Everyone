@@ -34,8 +34,33 @@ const AiCreationSuite = () => {
         setCurrentStep(1);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/ai/generate-text', {
-                prompt,
+            let endpoint = 'http://localhost:5000/api/ai/generate-text';
+            let payload = { prompt };
+
+            if (type === 'code') {
+                endpoint = 'http://localhost:5000/api/ai/generate-code';
+            } else if (type === 'image') {
+                // For image mode in a demo, we simulate a response but show a visual/caption
+                setTimeout(() => {
+                    setOutput("A futuristic campus scene featuring students collaborating in an AI-powered innovation hub. Vibrant colors, sleek architecture, and holographic displays. [Visual Reference Generated]");
+                    setProvider('dall-e-3 (Simulated)');
+                    setGenerating(false);
+                    setCurrentStep(2);
+                }, 2000);
+                return;
+            } else if (type === 'extra') {
+                // Research mode simulation
+                setTimeout(() => {
+                    setOutput("Research Summary: Based on current campus trends, GenAI adoption has increased by 42% this semester. Primary use cases include coding assistance and event marketing automation. Recommendations: Focus on ethics-first integration.");
+                    setProvider('perplexity-research (Simulated)');
+                    setGenerating(false);
+                    setCurrentStep(2);
+                }, 2000);
+                return;
+            }
+
+            const response = await axios.post(endpoint, {
+                ...payload,
                 systemPrompt: type === 'code' ? 'You are an expert developer. Provide clean, documented code.' : 'You are a creative content specialist for campus events.'
             });
 
@@ -44,11 +69,10 @@ const AiCreationSuite = () => {
             setCurrentStep(2);
         } catch (error) {
             console.error('Generation failed:', error);
-            setTimeout(() => {
-                setOutput("This is a premium generation example. In a production environment, this would be the actual AI response from " + (prompt.includes('code') ? 'Groq/Llama3' : 'Gemini/Flash') + ".");
-                setProvider('groq');
-                setCurrentStep(2);
-            }, 1500);
+            // Service itself handles fallback but if network fails:
+            setOutput("Network Error: Could not connect to the campus AI backend. Please verify that the server is running on port 5000.");
+            setProvider('system-error');
+            setCurrentStep(2);
         } finally {
             setGenerating(false);
         }
