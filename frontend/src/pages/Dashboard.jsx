@@ -224,7 +224,7 @@ const Dashboard = () => {
                 onClose={() => setShowLogoutModal(false)}
                 onConfirm={() => {
                     localStorage.clear();
-                    navigate('/login');
+                    navigate('/');
                 }}
             />
         </div>

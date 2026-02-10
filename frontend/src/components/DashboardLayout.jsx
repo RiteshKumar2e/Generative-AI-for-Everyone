@@ -116,7 +116,7 @@ const DashboardLayout = () => {
                 onClose={() => setShowLogoutModal(false)}
                 onConfirm={() => {
                     localStorage.clear();
-                    navigate('/login');
+                    navigate('/');
                 }}
             />
         </div>

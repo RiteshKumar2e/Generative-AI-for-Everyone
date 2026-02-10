@@ -180,7 +180,7 @@ const AdminPanel = () => {
                 onClose={() => setShowLogoutModal(false)}
                 onConfirm={() => {
                     localStorage.clear();
-                    window.location.href = '/login';
+                    navigate('/');
                 }}
             />
         </div>
