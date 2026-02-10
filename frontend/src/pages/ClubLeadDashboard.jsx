@@ -120,16 +120,12 @@ const ClubLeadDashboard = () => {
                         <div style={{ padding: '0.75rem', borderRadius: '16px', background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
                             <Users size={26} />
                         </div>
-                        <div className="stat-trend positive" style={{ fontSize: '0.8rem', fontWeight: 800, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                            <TrendingUp size={16} />
-                            <span>12%</span>
-                        </div>
                     </div>
                     <div>
-                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>158</h3>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>0</h3>
                         <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Total Members</p>
                     </div>
-                    <div className="stat-progress-bar" style={{ background: '#6366f1' }} />
+                    <div className="stat-progress-bar" style={{ background: '#6366f1', width: '0%' }} />
                 </div>
 
                 <div className="stat-card-premium">
@@ -139,10 +135,10 @@ const ClubLeadDashboard = () => {
                         </div>
                     </div>
                     <div>
-                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>4</h3>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>0</h3>
                         <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Active Events</p>
                     </div>
-                    <div className="stat-progress-bar" style={{ background: '#f59e0b' }} />
+                    <div className="stat-progress-bar" style={{ background: '#f59e0b', width: '0%' }} />
                 </div>
 
                 <div className="stat-card-premium">
@@ -152,10 +148,10 @@ const ClubLeadDashboard = () => {
                         </div>
                     </div>
                     <div>
-                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>24</h3>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>0</h3>
                         <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>AI Assets Created</p>
                     </div>
-                    <div className="stat-progress-bar" style={{ background: '#10b981' }} />
+                    <div className="stat-progress-bar" style={{ background: '#10b981', width: '0%' }} />
                 </div>
 
                 <div className="stat-card-premium">
@@ -165,10 +161,10 @@ const ClubLeadDashboard = () => {
                         </div>
                     </div>
                     <div>
-                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>#2</h3>
+                        <h3 style={{ fontSize: '2.25rem', fontWeight: 800, margin: '0 0 0.25rem' }}>-</h3>
                         <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Campus Ranking</p>
                     </div>
-                    <div className="stat-progress-bar" style={{ background: '#8b5cf6' }} />
+                    <div className="stat-progress-bar" style={{ background: '#8b5cf6', width: '0%' }} />
                 </div>
             </div>
 
@@ -202,71 +198,26 @@ const ClubLeadDashboard = () => {
                             <div className="team-activity-grid">
                                 <div className="section-title-row">
                                     <h2 className="section-title">Latest Team Activity</h2>
-                                    <Link to="/history" className="view-all-link">View Audit Log</Link>
                                 </div>
-                                <div className="team-activity-card">
-                                    <div className="activity-avatar">
-                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="user" />
-                                    </div>
-                                    <div className="activity-details">
-                                        <h4>Alex Rivera</h4>
-                                        <p>Created a new marketing campaign using Creation Suite 🚀</p>
-                                        <div className="activity-meta">
-                                            <span className="activity-type">Creation</span>
-                                            <span className="activity-time">2 hours ago</span>
-                                        </div>
-                                    </div>
-                                    <ChevronRight size={20} className="activity-arrow" />
-                                </div>
-                                <div className="team-activity-card">
-                                    <div className="activity-avatar">
-                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="user" />
-                                    </div>
-                                    <div className="activity-details">
-                                        <h4>Sarah Chen</h4>
-                                        <p>Updated the event details for "AI Campus Summit" 📅</p>
-                                        <div className="activity-meta">
-                                            <span className="activity-type">Event</span>
-                                            <span className="activity-time">5 hours ago</span>
-                                        </div>
-                                    </div>
-                                    <ChevronRight size={20} className="activity-arrow" />
+                                <div style={{ textAlign: 'center', padding: '3rem', background: 'white', borderRadius: '24px', border: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                                    <Clock size={40} style={{ marginBottom: '1rem', opacity: 0.5 }} />
+                                    <p style={{ fontWeight: 600 }}>No recent activity to show</p>
                                 </div>
                             </div>
                         )}
 
                         {activeTab === 'upcoming' && (
                             <div className="events-grid">
-                                <div className="event-card">
-                                    <div className="event-header">
-                                        <span className="event-status status-confirmed">Confirmed</span>
-                                        <MoreVertical size={18} />
-                                    </div>
-                                    <h4>AI Workshop: GenAI Basics</h4>
-                                    <p className="event-date">March 15, 2024 • 2:00 PM</p>
-                                    <div className="event-footer">
-                                        <div className="event-attendees">
-                                            <Users size={16} />
-                                            <span>45 Registered</span>
-                                        </div>
-                                        <button className="btn-action-small">Manage</button>
-                                    </div>
+                                <div style={{ gridColumn: 'span 2', textAlign: 'center', padding: '3rem', background: 'white', borderRadius: '24px', border: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                                    <Calendar size={40} style={{ marginBottom: '1rem', opacity: 0.5 }} />
+                                    <p style={{ fontWeight: 600 }}>No upcoming events scheduled</p>
                                 </div>
-                                <div className="event-card">
-                                    <div className="event-header">
-                                        <span className="event-status status-planning">Planning</span>
-                                        <MoreVertical size={18} />
-                                    </div>
-                                    <h4>Campus Hackathon 2024</h4>
-                                    <p className="event-date">April 02, 2024 • 9:00 AM</p>
-                                    <div className="event-footer">
-                                        <div className="event-attendees">
-                                            <Users size={16} />
-                                            <span>120 Interested</span>
-                                        </div>
-                                        <button className="btn-action-small">Edit</button>
-                                    </div>
-                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'recent' && (
+                            <div style={{ textAlign: 'center', padding: '3rem', background: 'white', borderRadius: '24px', border: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                                <div style={{ fontWeight: 600 }}>Zero activity logs found for the selected period.</div>
                             </div>
                         )}
                     </div>
@@ -279,47 +230,17 @@ const ClubLeadDashboard = () => {
                             <h2 className="section-title">Team</h2>
                             <Link to="/team" className="view-all-link">Manage</Link>
                         </div>
-                        <div className="members-list">
-                            {[
-                                { name: 'Alex Rivera', role: 'Lead Designer', status: 'online' },
-                                { name: 'Sarah Chen', role: 'Dev Lead', status: 'online' },
-                                { name: 'Marcus Jo', role: 'Events', status: 'offline' }
-                            ].map((member, i) => (
-                                <div key={i} className="member-item">
-                                    <div className="member-avatar-wrapper">
-                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${member.name}`} alt="avatar" />
-                                        <span className={`status-dot ${member.status}`}></span>
-                                    </div>
-                                    <div className="member-info">
-                                        <p className="member-name">{member.name}</p>
-                                        <p className="member-role">{member.role}</p>
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="members-list" style={{ textAlign: 'center', padding: '1.5rem', background: 'var(--slate-50)', borderRadius: '16px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                            No team members added yet
                         </div>
                     </div>
 
                     <div className="tasks-widget">
                         <div className="section-title-row">
                             <h2 className="section-title">To-Do</h2>
-                            <span className="task-count">3</span>
                         </div>
-                        <div className="tasks-list">
-                            <div className="task-item">
-                                <CheckCircle2 size={18} className="task-checkbox" />
-                                <span>Approve event budget</span>
-                                <span className="priority-badge priority-high">High</span>
-                            </div>
-                            <div className="task-item">
-                                <CheckCircle2 size={18} className="task-checkbox" />
-                                <span>Review AI assets</span>
-                                <span className="priority-badge priority-medium">Medium</span>
-                            </div>
-                            <div className="task-item">
-                                <CheckCircle2 size={18} className="task-checkbox" />
-                                <span>Send club newsletter</span>
-                                <span className="priority-badge priority-low">Low</span>
-                            </div>
+                        <div className="tasks-list" style={{ textAlign: 'center', padding: '1.5rem', background: 'var(--slate-50)', borderRadius: '16px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                            All caught up! No pending tasks.
                         </div>
                     </div>
                 </div>

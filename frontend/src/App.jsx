@@ -12,7 +12,7 @@ import TeamHub from './pages/TeamHub';
 import Events from './pages/Events';
 import Analytics from './pages/Analytics';
 import History from './pages/History';
-import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 import DashboardLayout from './components/DashboardLayout';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
           <Route path="/builder" element={<LowCodeBuilder />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/history" element={<History />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

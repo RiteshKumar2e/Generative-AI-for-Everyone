@@ -129,14 +129,8 @@ const DashboardLayout = () => {
                     <SidebarLink
                         icon={<User size={20} />}
                         label="My Profile"
-                        to="/settings"
-                        active={location.pathname === '/settings'}
-                    />
-                    <SidebarLink
-                        icon={<Settings size={20} />}
-                        label="Settings"
-                        to="/settings"
-                        active={location.pathname === '/settings'}
+                        to="/profile"
+                        active={location.pathname === '/profile'}
                     />
                     <button className="btn-logout" onClick={() => setShowLogoutModal(true)}>
                         <LogOut size={20} />
