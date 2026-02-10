@@ -15,7 +15,7 @@ const LoginPage = () => {
         let role = 'student';
         if (email.includes('admin')) {
             role = 'admin';
-        } else if (email.includes('lead')) {
+        } else if (email.includes('lead') || email.includes('club')) {
             role = 'club';
         }
 
