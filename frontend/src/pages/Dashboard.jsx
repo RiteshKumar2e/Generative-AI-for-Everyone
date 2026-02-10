@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     LayoutDashboard,
@@ -18,6 +18,7 @@ import {
     Code
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import LogoutModal from '../components/LogoutModal';
 import '../styles/Dashboard.css';
 
 const SidebarLink = ({ icon, label, to, active }) => (
@@ -36,6 +37,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const role = localStorage.getItem('userRole') || 'student';
     const userName = localStorage.getItem('userName') || 'User';
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     if (role === 'admin') {
         navigate('/admin');
@@ -68,7 +70,7 @@ const Dashboard = () => {
 
                 <div className="sidebar-footer">
                     <SidebarLink icon={<Settings size={20} />} label="Settings" to="/settings" />
-                    <button className="btn-logout" onClick={() => { localStorage.clear(); navigate('/login'); }}>
+                    <button className="btn-logout" onClick={() => setShowLogoutModal(true)}>
                         <LogOut size={20} />
                         <span>Logout</span>
                     </button>
@@ -213,6 +215,16 @@ const Dashboard = () => {
                     </div>
                 </div>
             </main>
+
+            {/* Logout Confirmation Modal */}
+            <LogoutModal
+                isOpen={showLogoutModal}
+                onClose={() => setShowLogoutModal(false)}
+                onConfirm={() => {
+                    localStorage.clear();
+                    navigate('/login');
+                }}
+            />
         </div>
     );
 };

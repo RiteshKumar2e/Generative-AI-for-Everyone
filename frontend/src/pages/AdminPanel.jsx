@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     BarChart3,
     Users,
@@ -13,10 +13,12 @@ import {
     Activity
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LogoutModal from '../components/LogoutModal';
 import '../styles/AdminPanel.css';
 import '../styles/Workspace.css'; // Reusing header/back button styles if possible, but Admin panel has its own header-like structure
 
 const AdminPanel = () => {
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
     return (
         <div className="admin-wrapper">
             {/* Header */}
@@ -36,20 +38,17 @@ const AdminPanel = () => {
                         <div className="user-avatar" style={{ width: '32px', height: '32px' }}>
                             <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Admin`} alt="admin" />
                         </div>
-                         <button 
-                            onClick={() => {
-                                localStorage.clear();
-                                window.location.href = '/login';
-                            }}
-                            className="btn-back" 
-                            style={{ 
-                                border: '1px solid var(--border-color)', 
+                        <button
+                            onClick={() => setShowLogoutModal(true)}
+                            className="btn-back"
+                            style={{
+                                border: '1px solid var(--border-color)',
                                 background: 'white',
                                 marginLeft: '0.5rem',
                                 padding: '0.5rem',
                                 cursor: 'pointer'
-                             }}
-                             title="Logout"
+                            }}
+                            title="Logout"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                         </button>
@@ -160,6 +159,16 @@ const AdminPanel = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Logout Confirmation Modal */}
+            <LogoutModal
+                isOpen={showLogoutModal}
+                onClose={() => setShowLogoutModal(false)}
+                onConfirm={() => {
+                    localStorage.clear();
+                    window.location.href = '/login';
+                }}
+            />
         </div>
     );
 };

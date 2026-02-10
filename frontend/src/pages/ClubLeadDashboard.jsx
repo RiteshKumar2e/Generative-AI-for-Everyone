@@ -26,6 +26,7 @@ import {
     CheckCircle2
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import LogoutModal from '../components/LogoutModal';
 import '../styles/Dashboard.css';
 import '../styles/ClubLeadDashboard.css';
 
@@ -43,6 +44,7 @@ const ClubLeadDashboard = () => {
     const navigate = useNavigate();
     const userName = localStorage.getItem('userName') || 'Club Lead';
     const [activeTab, setActiveTab] = useState('overview');
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     return (
         <div className="dashboard-wrapper">
@@ -66,7 +68,7 @@ const ClubLeadDashboard = () => {
 
                 <div className="sidebar-footer">
                     <SidebarLink icon={<Settings size={20} />} label="Settings" to="/settings" />
-                    <button className="btn-logout" onClick={() => { localStorage.clear(); navigate('/login'); }}>
+                    <button className="btn-logout" onClick={() => setShowLogoutModal(true)}>
                         <LogOut size={20} />
                         <span>Logout</span>
                     </button>
@@ -291,6 +293,16 @@ const ClubLeadDashboard = () => {
                     </div>
                 </div>
             </main>
+
+            {/* Logout Confirmation Modal */}
+            <LogoutModal
+                isOpen={showLogoutModal}
+                onClose={() => setShowLogoutModal(false)}
+                onConfirm={() => {
+                    localStorage.clear();
+                    navigate('/login');
+                }}
+            />
         </div>
     );
 };
