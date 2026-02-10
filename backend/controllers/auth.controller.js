@@ -77,3 +77,64 @@ exports.getMe = async (req, res) => {
     // For now, let's assume req.user is set or just return status 200
     res.status(200).json({ success: true, message: 'Auth working' });
 };
+
+// Demo Login - Works without database
+exports.demoLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Demo credentials
+        const demoUsers = {
+            'admin@test.com': {
+                password: 'Admin123!',
+                user: {
+                    id: 'demo-admin-001',
+                    name: 'Admin User',
+                    email: 'admin@test.com',
+                    role: 'admin',
+                    credits: 1000
+                }
+            },
+            'club@test.com': {
+                password: 'Club123!',
+                user: {
+                    id: 'demo-club-001',
+                    name: 'Club Lead',
+                    email: 'club@test.com',
+                    role: 'club',
+                    credits: 500
+                }
+            },
+            'student@test.com': {
+                password: 'Student123!',
+                user: {
+                    id: 'demo-student-001',
+                    name: 'Student User',
+                    email: 'student@test.com',
+                    role: 'student',
+                    credits: 100
+                }
+            }
+        };
+
+        const demoUser = demoUsers[email];
+
+        if (!demoUser || demoUser.password !== password) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid demo credentials. Try: admin@test.com / Admin123!'
+            });
+        }
+
+        const token = signToken(demoUser.user.id);
+
+        res.status(200).json({
+            success: true,
+            token,
+            data: demoUser.user,
+            message: '🎉 Demo login successful!'
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};

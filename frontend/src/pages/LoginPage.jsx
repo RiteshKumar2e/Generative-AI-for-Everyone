@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Mail, Lock, ArrowRight, Github } from 'lucide-react';
+import { Brain, Mail, Lock, ArrowRight, Github, ArrowLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Auth.css';
 
@@ -33,6 +33,12 @@ const LoginPage = () => {
 
     return (
         <div className="auth-wrapper">
+            {/* Back to Home Button */}
+            <Link to="/" className="back-to-home-btn">
+                <ArrowLeft size={20} />
+                <span>Back to Home</span>
+            </Link>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
