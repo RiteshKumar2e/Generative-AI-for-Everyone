@@ -39,13 +39,15 @@ const Dashboard = () => {
     const userName = localStorage.getItem('userName') || 'User';
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-    if (role === 'admin') {
-        navigate('/admin');
-        return null;
-    }
+    React.useEffect(() => {
+        if (role === 'admin') {
+            navigate('/admin');
+        } else if (role === 'club') {
+            navigate('/club-dashboard');
+        }
+    }, [role, navigate]);
 
-    if (role === 'club') {
-        navigate('/club-dashboard');
+    if (role === 'admin' || role === 'club') {
         return null;
     }
 

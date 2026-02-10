@@ -8,6 +8,7 @@ import ClubLeadDashboard from './pages/ClubLeadDashboard';
 import AiCreationSuite from './pages/AiCreationSuite';
 import LowCodeBuilder from './pages/LowCodeBuilder';
 import AdminPanel from './pages/AdminPanel';
+import ComingSoon from './pages/ComingSoon';
 
 function App() {
   return (
@@ -23,6 +24,13 @@ function App() {
         <Route path="/create" element={<AiCreationSuite />} />
         <Route path="/builder" element={<LowCodeBuilder />} />
         <Route path="/admin" element={<AdminPanel />} />
+
+        {/* Module Placeholders to avoid redirects */}
+        <Route path="/team" element={<ComingSoon title="Team Hub" />} />
+        <Route path="/events" element={<ComingSoon title="Events Management" />} />
+        <Route path="/analytics" element={<ComingSoon title="Analytics" />} />
+        <Route path="/history" element={<ComingSoon title="History" />} />
+        <Route path="/settings" element={<ComingSoon title="Settings" />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

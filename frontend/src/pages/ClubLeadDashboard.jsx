@@ -42,9 +42,22 @@ const SidebarLink = ({ icon, label, to, active }) => (
 
 const ClubLeadDashboard = () => {
     const navigate = useNavigate();
+    const role = localStorage.getItem('userRole') || 'student';
     const userName = localStorage.getItem('userName') || 'Club Lead';
     const [activeTab, setActiveTab] = useState('overview');
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+    React.useEffect(() => {
+        if (role === 'student') {
+            navigate('/dashboard');
+        } else if (role === 'admin') {
+            navigate('/admin');
+        }
+    }, [role, navigate]);
+
+    if (role === 'student' || role === 'admin') {
+        return null;
+    }
 
     return (
         <div className="dashboard-wrapper">

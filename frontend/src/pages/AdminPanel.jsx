@@ -12,13 +12,27 @@ import {
     TrendingUp,
     Activity
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LogoutModal from '../components/LogoutModal';
 import '../styles/AdminPanel.css';
 import '../styles/Workspace.css'; // Reusing header/back button styles if possible, but Admin panel has its own header-like structure
 
 const AdminPanel = () => {
+    const navigate = useNavigate();
+    const role = localStorage.getItem('userRole') || 'student';
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+    React.useEffect(() => {
+        if (role === 'student') {
+            navigate('/dashboard');
+        } else if (role === 'club') {
+            navigate('/club-dashboard');
+        }
+    }, [role, navigate]);
+
+    if (role === 'student' || role === 'club') {
+        return null;
+    }
     return (
         <div className="admin-wrapper">
             {/* Header */}
