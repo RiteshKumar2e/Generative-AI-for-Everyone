@@ -170,7 +170,7 @@
 .btn-auth-submit {
     width: 100%;
     padding: 1.25rem;
-    background: var(--text-main);
+    background: linear-gradient(135deg, #f97316, #ea580c);
     color: white;
     border: none;
     border-radius: 1rem;
@@ -181,12 +181,14 @@
     justify-content: center;
     gap: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.3);
 }
 
 .btn-auth-submit:hover {
-    background: #1e293b;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #fb923c, #f97316);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(234, 88, 12, 0.4);
 }
 
 .auth-divider {
@@ -260,11 +262,28 @@
     transition: all 0.2s;
 }
 
-.role-btn.active {
+.role-btn:hover {
+    border-color: var(--slate-300);
     background: white;
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+}
+
+.role-btn.active-student {
+    background: #f0f9ff;
+    border-color: #0ea5e9;
+    color: #0284c7;
+    box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
+}
+
+.role-btn.active-club {
+    background: #f5f3ff;
+    border-color: #7c3aed;
+    color: #6d28d9;
+    box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.1);
+}
+
+.role-btn.active-student span,
+.role-btn.active-club span {
+    font-weight: 800;
 }
 
 .role-btn span {
@@ -282,4 +301,51 @@
     .grid-2 {
         grid-template-columns: 1fr;
     }
+}
+
+/* Admin Portal Theme */
+.admin-theme {
+    background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+}
+
+.admin-card {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+}
+
+.admin-accent {
+    background: linear-gradient(to right, #ef4444, #991b1b) !important;
+}
+
+.admin-logo-box {
+    background: linear-gradient(135deg, #ef4444, #991b1b) !important;
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3) !important;
+}
+
+.admin-card h2,
+.admin-card p,
+.admin-label {
+    color: white !important;
+}
+
+.admin-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.admin-input:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1) !important;
+}
+
+.admin-submit {
+    background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+}
+
+.admin-submit:hover {
+    background: linear-gradient(135deg, #f87171, #ef4444) !important;
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4) !important;
 }

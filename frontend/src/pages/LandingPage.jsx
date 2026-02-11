@@ -77,7 +77,7 @@ const LandingPage = () => {
                         ) : (
                             <>
                                 <Link to="/login" className="btn-signin">Sign In</Link>
-                                <Link to="/register" className="btn-cta">Start Building</Link>
+                                <Link to="/admin-login" className="btn-cta">Admin Login</Link>
                             </>
                         )}
                     </div>

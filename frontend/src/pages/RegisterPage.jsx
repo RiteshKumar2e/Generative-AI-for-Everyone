@@ -84,7 +84,7 @@ const RegisterPage = () => {
                                     key={r.id}
                                     type="button"
                                     onClick={() => setRole(r.id)}
-                                    className={`role-btn ${role === r.id ? 'active' : ''}`}
+                                    className={`role-btn ${role === r.id ? `active-${r.id}` : ''}`}
                                 >
                                     {r.icon}
                                     <span>{r.label}</span>
