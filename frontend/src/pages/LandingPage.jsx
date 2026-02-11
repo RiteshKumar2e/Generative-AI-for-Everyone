@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin, ChevronUp } from 'lucide-react';
 import ThreeBackground from '../components/ThreeBackground';
 import { Link } from 'react-router-dom';
@@ -7,12 +7,7 @@ import '../styles/LandingPage.css';
 
 const LandingPage = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,18 +42,7 @@ const LandingPage = () => {
         <div className="landing-wrapper">
             <ThreeBackground />
 
-            {/* Scroll Progress Bar */}
-            <motion.div className="scroll-progress" style={{
-                scaleX,
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '4px',
-                background: 'linear-gradient(to right, #0ea5e9, #7c3aed)',
-                transformOrigin: '0%',
-                zIndex: 2000
-            }} />
+
 
             {/* Navbar */}
             <nav className={`main-nav ${isScrolled ? 'scrolled' : ''}`}>
