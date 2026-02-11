@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin, ChevronUp } from 'lucide-react';
+import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin, ChevronUp, Heart } from 'lucide-react';
 import ThreeBackground from '../components/ThreeBackground';
 import { Link } from 'react-router-dom';
 import '../styles/LandingPage.css';
@@ -59,7 +59,6 @@ const LandingPage = () => {
                         <a href="#mission">Mission</a>
                         <a href="#about">About</a>
                         <a href="#goals">Goals</a>
-                        <a href="#team">Team</a>
                         <a href="#testimonials">Testimonials</a>
                         <a href="#contact">Contact</a>
                     </div>
@@ -158,7 +157,7 @@ const LandingPage = () => {
                         viewport={{ once: true, margin: "-100px" }}
                         className="mission-content"
                     >
-                        <div className="badge-label" style={{ background: '#f8fafc' }}>Strategic Vision</div>
+                        <div className="badge-label">Strategic Vision</div>
                         <h2>Democratizing High-Performance AI</h2>
                         <p className="mission-desc">
                             We believe that elite AI capabilities shouldn't be reserved for tech giants. Our platform provides the infrastructure that enables any student or club to build, create, and innovate without limits.
@@ -226,32 +225,49 @@ const LandingPage = () => {
                 </div>
             </section>
 
-            {/* About Section Placeholder */}
-            <section id="about" style={{ padding: '8rem 2rem', background: '#fff' }}>
+            {/* About Section */}
+            <section id="about" style={{ padding: '10rem 2rem', background: 'transparent' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-                    <div className="badge-label" style={{ marginBottom: '1.5rem', marginInline: 'auto' }}>About Us</div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '2rem' }}>Building the Foundation of AI</h2>
-                    <p style={{ fontSize: '1.2rem', color: '#64748b', maxWidth: '800px', margin: '0 auto' }}>
-                        CampusGenAI is an initiative dedicated to bringing state-of-the-art generative artificial intelligence tools to students, researchers, and educators worldwide. We bridge the gap between complex AI infrastructure and creative minds.
-                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="glass-content-card"
+                    >
+                        <div className="badge-label" style={{ marginBottom: '1.5rem', marginInline: 'auto' }}>About Us</div>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '2rem', letterSpacing: '-0.02em' }}>
+                            Building the <span className="hero-gradient">Foundation of AI</span>
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: '#64748b', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8, fontWeight: 500 }}>
+                            CampusGenAI is an initiative dedicated to bringing state-of-the-art generative artificial intelligence tools to students, researchers, and educators worldwide. We bridge the gap between complex AI infrastructure and creative minds.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
-            {/* Goals Section Placeholder */}
-            <section id="goals" style={{ padding: '8rem 2rem', background: '#f8fafc' }}>
+            {/* Goals Section */}
+            <section id="goals" style={{ padding: '10rem 2rem', background: 'transparent' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
                     <div className="badge-label" style={{ marginBottom: '1.5rem', marginInline: 'auto' }}>Our Goals</div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '2rem' }}>Vision for the Future</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
+                    <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '2rem', letterSpacing: '-0.02em' }}>Vision for the Future</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem', marginTop: '5rem' }}>
                         {[
                             { title: "Accessibility", desc: "Making AI tools available to everyone, regardless of technical background." },
                             { title: "Innovation", desc: "Fostering a culture of experimentation and breakthrough discoveries." },
                             { title: "Collaboration", desc: "Connecting minds across disciplines to solve global challenges." }
                         ].map((goal, i) => (
-                            <div key={i} style={{ padding: '2.5rem', background: 'white', borderRadius: '2rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)' }}>
-                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 800 }}>{goal.title}</h3>
-                                <p style={{ color: '#64748b' }}>{goal.desc}</p>
-                            </div>
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                viewport={{ once: true }}
+                                className="goal-card"
+                            >
+                                <h3 style={{ fontSize: '1.75rem', marginBottom: '1.25rem', fontWeight: 800 }}>{goal.title}</h3>
+                                <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: '1.05rem' }}>{goal.desc}</p>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -323,44 +339,33 @@ const LandingPage = () => {
                 </div>
             </section>
 
-            {/* Team & Testimonials Placeholder */}
-            <section id="team" style={{ padding: '8rem 2rem', background: 'white' }}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-                    <div className="badge-label" style={{ marginBottom: '1.5rem', marginInline: 'auto' }}>Team</div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '4rem' }}>Meet the Minds</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem' }}>
-                        {[1, 2, 3, 4].map(i => (
-                            <div key={i} style={{ textAlign: 'center' }}>
-                                <div style={{ width: '120px', height: '120px', background: '#f1f5f9', borderRadius: '50%', margin: '0 auto 1.5rem', overflow: 'hidden' }}>
-                                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=dev${i}`} alt="Team Member" />
-                                </div>
-                                <h4 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Dev Member {i}</h4>
-                                <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Lead Engineer</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            <section id="testimonials" style={{ padding: '8rem 2rem', background: '#f8fafc' }}>
+
+            <section id="testimonials" style={{ padding: '10rem 2rem', background: 'transparent' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
                     <div className="badge-label" style={{ marginBottom: '1.5rem', marginInline: 'auto' }}>Testimonials</div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '4rem' }}>Campus Voices</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                    <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '5rem', letterSpacing: '-0.02em' }}>Campus Voices</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
                         {[1, 2, 3].map(i => (
-                            <div key={i} style={{ padding: '2.5rem', background: 'white', borderRadius: '2rem', textAlign: 'left', border: '1px solid rgba(0,0,0,0.05)' }}>
-                                <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', color: '#f59e0b' }}>★★★★★</div>
-                                <p style={{ fontStyle: 'italic', color: '#475569', marginBottom: '1.5rem', lineHeight: '1.6' }}>"CampusGenAI has completely transformed how our research club operates. The tools are intuitive yet incredibly powerful."</p>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#e2e8f0', overflow: 'hidden' }}>
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                className="testimonial-card"
+                            >
+                                <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.5rem', color: '#f59e0b' }}>★★★★★</div>
+                                <p style={{ fontStyle: 'italic', color: '#475569', marginBottom: '2rem', lineHeight: '1.8', fontSize: '1.1rem' }}>"CampusGenAI has completely transformed how our research club operates. The tools are intuitive yet incredibly powerful."</p>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                                    <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: '#f1f5f9', border: '2px solid white', overflow: 'hidden' }}>
                                         <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=student${i}`} alt="Student" />
                                     </div>
-                                    <div>
-                                        <div style={{ fontWeight: 700 }}>Alex Chen</div>
-                                        <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Computer Science Student</div>
+                                    <div style={{ textAlign: 'left' }}>
+                                        <div style={{ fontWeight: 800, fontSize: '1.05rem' }}>Alex Chen</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>Computer Science Student</div>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -369,26 +374,38 @@ const LandingPage = () => {
             {/* CTA Banner */}
             <section className="cta-banner" style={{ padding: '0 2rem 10rem' }}>
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     style={{
                         maxWidth: '1300px',
                         margin: '0 auto',
-                        background: 'linear-gradient(135deg, #0ea5e9, #7c3aed)',
-                        borderRadius: '3.5rem',
-                        padding: '6rem 4rem',
+                        background: 'rgba(15, 23, 42, 0.8)',
+                        backdropFilter: 'blur(24px)',
+                        borderRadius: '4rem',
+                        padding: '8rem 4rem',
                         textAlign: 'center',
                         color: 'white',
-                        boxShadow: '0 40px 100px -20px rgba(124, 58, 237, 0.3)',
+                        boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.2)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
                         position: 'relative',
                         overflow: 'hidden'
                     }}
                 >
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'url(https://www.transparenttextures.com/patterns/carbon-fibre.png)', opacity: 0.1 }}></div>
-                    <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '1.5rem', color: 'white' }}>Ready to redefine your campus?</h2>
-                    <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', maxWidth: '600px', margin: '0 auto 3rem', fontWeight: 500 }}>Join hundreds of teams already shaping the future with CampusGenAI.</p>
-                    <Link to="/register" className="btn-cta" style={{ background: 'white', color: '#0ea5e9', fontSize: '1.1rem', padding: '1.25rem 3rem' }}>Get Started Free</Link>
+                    <div style={{
+                        position: 'absolute',
+                        top: '-50%',
+                        left: '-50%',
+                        width: '200%',
+                        height: '200%',
+                        background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 50%)',
+                        pointerEvents: 'none'
+                    }}></div>
+                    <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '2rem', color: 'white', letterSpacing: '-0.03em' }}>
+                        Ready to redefine <br /><span className="hero-gradient">your campus?</span>
+                    </h2>
+                    <p style={{ fontSize: '1.4rem', color: 'rgba(255,255,255,0.7)', maxWidth: '700px', margin: '0 auto 4rem', fontWeight: 500, lineHeight: 1.6 }}>Join hundreds of teams already shaping the future with CampusGenAI.</p>
+                    <Link to="/register" className="btn-cta" style={{ fontSize: '1.2rem', padding: '1.5rem 3.5rem' }}>Get Started Free</Link>
                 </motion.div>
             </section>
 
@@ -418,21 +435,22 @@ const LandingPage = () => {
                         <div className="footer-links">
                             <h4>Community</h4>
                             <ul>
-                                <li><a href="#team">Team</a></li>
                                 <li><a href="#testimonials">Testimonials</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Security Protocols</a></li>
                             </ul>
                         </div>
 
                         <div className="footer-links">
                             <h4>Connect With Us</h4>
                             <div className="social-icons-row">
-                                <a href="mailto:hello@campusgenai.edu" className="social-icon-btn" aria-label="Email">
+                                <a href="mailto:riteshkumar90359@gmail.com" className="social-icon-btn" aria-label="Email">
                                     <Mail size={20} />
                                 </a>
-                                <a href="https://github.com/campusgenai" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
+                                <a href="https://github.com/RiteshKumar2e" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
                                     <Github size={20} />
                                 </a>
-                                <a href="https://linkedin.com/company/campusgenai" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="LinkedIn">
+                                <a href="https://www.linkedin.com/in/ritesh-kumar-b3a654253" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="LinkedIn">
                                     <Linkedin size={20} />
                                 </a>
                             </div>
@@ -441,10 +459,15 @@ const LandingPage = () => {
 
                     <div className="footer-bottom">
                         <p>© 2026 CampusGenAI Platforms. Optimized for next-generation intelligence.</p>
-                        <div style={{ display: 'flex', gap: '2rem' }}>
-                            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
-                            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Security Protocols</a>
-                        </div>
+                        <p style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            fontWeight: 700,
+                            color: '#64748b'
+                        }}>
+                            Developed with <Heart size={16} fill="#ef4444" color="#ef4444" /> by <span style={{ color: '#0ea5e9' }}>Ritesh Kumar</span>
+                        </p>
                     </div>
                 </div>
             </footer>
