@@ -136,24 +136,27 @@
 }
 
 .btn-signin {
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #64748b;
-    padding: 0.6rem 1.25rem;
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: white;
+    padding: 0.85rem 1.75rem;
     border-radius: 100px;
-    border: 1px solid #e2e8f0;
+    font-weight: 700;
+    text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
 }
 
 .btn-signin:hover {
-    color: #f97316;
-    border-color: #f97316;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
+    color: white;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(14, 165, 233, 0.3);
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
 }
 
 .btn-cta {

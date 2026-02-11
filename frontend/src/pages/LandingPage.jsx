@@ -76,7 +76,7 @@ const LandingPage = () => {
                             <Link to={getDashboardLink()} className="btn-cta">{getDashboardText()}</Link>
                         ) : (
                             <>
-                                <Link to="/login" className="btn-signin">Sign In</Link>
+                                <Link to="/login" className="btn-signin" style={{ marginRight: '1rem' }}>Sign In</Link>
                                 <Link to="/admin-login" className="btn-cta">Admin Login</Link>
                             </>
                         )}
