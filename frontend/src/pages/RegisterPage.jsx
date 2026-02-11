@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Mail, Lock, User, ArrowRight, Building, ShieldCheck, GraduationCap, ArrowLeft } from 'lucide-react';
+import { Brain, Mail, Lock, User, ArrowRight, Building, GraduationCap, ArrowLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Auth.css';
 
@@ -14,9 +14,7 @@ const RegisterPage = () => {
         localStorage.setItem('userRole', role);
         localStorage.setItem('userName', 'New User'); // Mock name
 
-        if (role === 'admin') {
-            navigate('/admin');
-        } else if (role === 'club') {
+        if (role === 'club') {
             navigate('/club-dashboard');
         } else {
             navigate('/dashboard');
@@ -80,8 +78,7 @@ const RegisterPage = () => {
                         <div className="role-grid">
                             {[
                                 { id: 'student', label: 'Student', icon: <GraduationCap size={20} /> },
-                                { id: 'club', label: 'Club Lead', icon: <Building size={20} /> },
-                                { id: 'admin', label: 'Admin', icon: <ShieldCheck size={20} /> }
+                                { id: 'club', label: 'Club Lead', icon: <Building size={20} /> }
                             ].map((r) => (
                                 <button
                                     key={r.id}

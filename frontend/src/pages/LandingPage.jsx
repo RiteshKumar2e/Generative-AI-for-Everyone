@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Sparkles, FileText, Image, Play, Layers, Code, ShieldCheck, Zap, Users, ArrowRight, Mail, Github, Linkedin, ChevronUp, Heart } from 'lucide-react';
 import ThreeBackground from '../components/ThreeBackground';
+import LegalModal from '../components/LegalModal';
 import { Link } from 'react-router-dom';
 import '../styles/LandingPage.css';
 
 const LandingPage = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalType, setModalType] = useState('privacy');
 
 
     useEffect(() => {
@@ -16,6 +19,11 @@ const LandingPage = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const openModal = (type) => {
+        setModalType(type);
+        setModalOpen(true);
+    };
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -436,8 +444,8 @@ const LandingPage = () => {
                             <h4>Community</h4>
                             <ul>
                                 <li><a href="#testimonials">Testimonials</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Security Protocols</a></li>
+                                <li><a href="#" onClick={(e) => { e.preventDefault(); openModal('privacy'); }}>Privacy Policy</a></li>
+                                <li><a href="#" onClick={(e) => { e.preventDefault(); openModal('security'); }}>Security Protocols</a></li>
                             </ul>
                         </div>
 
@@ -488,6 +496,13 @@ const LandingPage = () => {
             >
                 <ChevronUp size={24} />
             </motion.button>
+
+            {/* Legal Modal Component */}
+            <LegalModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                type={modalType}
+            />
         </div>
     );
 };

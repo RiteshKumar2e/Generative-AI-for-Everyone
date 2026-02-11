@@ -11,19 +11,19 @@ const BokehBlooms = () => {
             <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
                 <mesh position={[10, 5, -15]} scale={15}>
                     <sphereGeometry args={[1, 64, 64]} />
-                    <meshBasicMaterial color="#818cf8" transparent opacity={0.05} blending={THREE.AdditiveBlending} />
+                    <meshBasicMaterial color="#818cf8" transparent opacity={0.1} blending={THREE.NormalBlending} />
                 </mesh>
             </Float>
             <Float speed={1.2} rotationIntensity={0.5} floatIntensity={1}>
                 <mesh position={[-12, -8, -10]} scale={20}>
                     <sphereGeometry args={[1, 64, 64]} />
-                    <meshBasicMaterial color="#0ea5e9" transparent opacity={0.04} blending={THREE.AdditiveBlending} />
+                    <meshBasicMaterial color="#0ea5e9" transparent opacity={0.08} blending={THREE.NormalBlending} />
                 </mesh>
             </Float>
             <Float speed={0.8} rotationIntensity={0.5} floatIntensity={1}>
                 <mesh position={[5, -10, -12]} scale={12}>
                     <sphereGeometry args={[1, 64, 64]} />
-                    <meshBasicMaterial color="#db2777" transparent opacity={0.03} blending={THREE.AdditiveBlending} />
+                    <meshBasicMaterial color="#db2777" transparent opacity={0.06} blending={THREE.NormalBlending} />
                 </mesh>
             </Float>
         </group>
@@ -64,11 +64,11 @@ const DigitalDust = () => {
             </bufferGeometry>
             <pointsMaterial
                 size={0.03}
-                color="#94a3b8"
+                color="#64748b"
                 transparent
-                opacity={0.3}
+                opacity={0.4}
                 sizeAttenuation={true}
-                blending={THREE.AdditiveBlending}
+                blending={THREE.NormalBlending}
             />
         </points>
     );
@@ -111,9 +111,9 @@ const ThreeBackground = () => {
                 <DigitalDust />
                 <GlassSlabs />
 
-                <ambientLight intensity={1} />
-                <pointLight position={[10, 10, 10]} intensity={2} color="#ffffff" />
-                <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
+                <ambientLight intensity={1.5} />
+                <pointLight position={[10, 10, 10]} intensity={3} color="#ffffff" />
+                <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
             </Canvas>
         </div>
     );
